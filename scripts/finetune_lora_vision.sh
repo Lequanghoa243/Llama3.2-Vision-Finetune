@@ -18,8 +18,8 @@ deepspeed src/training/train.py \
     --num_lora_modules -1 \
     --deepspeed scripts/zero2.json \
     --model_id $MODEL_NAME \
-    --data_path /path/to/your/training/data.json \
-    --image_folder /path/to/your/image/folder \
+    --data_path /home/islabworker2/khiemvt/hoalq/content/lawvi/train_dataset.json \
+    --image_folder /home/islabworker2/khiemvt/hoalq/content/drive/MyDrive/NCKH/Images/Images \
     --disable_flash_attn2 True \
     --tune_img_projector True \
     --freeze_vision_tower False \
