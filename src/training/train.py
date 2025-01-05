@@ -10,6 +10,10 @@ from training.params import DataArguments, ModelArguments, TrainingArguments
 from training.train_utils import get_peft_state_maybe_zero_3, get_peft_state_non_lora_maybe_zero_3, safe_save_model_for_hf_trainer
 import pathlib
 from liger_kernel.transformers import apply_liger_kernel_to_mllama
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 local_rank = None
 
@@ -112,6 +116,7 @@ def train():
     model = MllamaForConditionalGeneration.from_pretrained(
         model_args.model_id,
         torch_dtype=compute_dtype,
+        token = os.getenv("TOKEN")
         cache_dir=training_args.cache_dir, 
         attn_implementation="flash_attention_2" if not training_args.disable_flash_attn2 else "sdpa", 
         **bnb_model_from_pretrained_args
